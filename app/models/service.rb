@@ -53,7 +53,7 @@ class Service < ApplicationRecord
       order("LOWER(services.name) #{ direction }")
     when /^price_/
       order("services.price #{ direction }")
-    when /^price_/
+    when /^cost_/
       order("services.cost #{ direction }")
     when /^country_name_/
       order("LOWER(countries.name) #{ direction }").includes(:country).references(:country)
