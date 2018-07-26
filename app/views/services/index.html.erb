@@ -1,0 +1,62 @@
+<div class="container"><%# app/views/students/index.html.erb %>
+<h1>Services</h1>
+
+<%#
+  Filterrific adds the `form_for_filterrific` view helper:
+  * adds dom id 'filterrific_filter'
+  * applies javascript behaviors:
+      * AJAX form submission on change
+      * AJAX spinner while AJAX request is being processed
+  * sets form_for options like :url, :method and input name prefix
+%>
+<div class="well">
+<%= form_for_filterrific @filterrific, html: { autocomplete: "off" } do |f| %>
+<div class="row">
+  <div class="col-md-3">
+  	<div class="form-group">
+    <%= f.label :search %>
+    <%# give the search field the 'filterrific-periodically-observed' class for live updates %>
+    <%= f.text_field(
+      :search_query,
+      class: 'filterrific-periodically-observed form-control'
+    ) %>
+</div>
+  </div>
+
+  <div class="col-md-3">
+  	<div class="form-group">
+    <%= f.label :country %>
+    <%= f.select(
+      :with_country_id,
+      @filterrific.select_options[:with_country_id],
+      { include_blank: '- Any -' }, class: 'form-control'
+    ) %>
+</div>
+  </div>
+
+  <div class="col-md-2">
+  	<div class="form-group">
+    <%= f.label :registered_after %>
+    <%= f.text_field(:with_created_at_gte, class: 'js-datepicker form-control') %>
+  </div>
+</div>
+  <div class="col-md-4">
+  	<div class="form-group">
+    <%= f.label :sorted_by %>
+    <%= f.select( :sorted_by, @filterrific.select_options[:sorted_by], {}, class: "form-control" ) %>
+  </div>
+</div>
+</div>
+  <%# add an automated spinner to your form when the list is refreshed %>
+<% end %>
+</div>
+
+<%= render(
+  partial: 'services/list',
+  locals: { services: @services }
+) %>
+
+</div>
+<script type="text/javascript">
+$('.js-datepicker').datepicker();
+</script>
