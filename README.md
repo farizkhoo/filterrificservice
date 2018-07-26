@@ -1,24 +1,11 @@
-# README
+# Filterrific Services
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+git clone https://github.com/farizkhoo/filterrificservice.git
 
-Things you may want to cover:
+rake db:create
 
-* Ruby version
+rake db:migrate
 
-* System dependencies
+rake db:seed
 
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+rails s
